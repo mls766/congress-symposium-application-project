@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KongreDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Aktif">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FKKongreId" Type="int" Nullable="false" />
+    <Property Name="AktifAlanId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Basvuru">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FKKisiId" Type="int" Nullable="false" />
+    <Property Name="FKKongreId" Type="int" Nullable="false" />
+    <Property Name="Onay" Type="bit" />
+    <Property Name="OnayZaman" Type="datetime" />
+    <Property Name="BasvuruZaman" Type="datetime" Nullable="false" />
+    <Property Name="BasvuruKodu" Type="varchar" MaxLength="50" />
+    <Property Name="SunumTipi" Type="int" />
+    <Property Name="SunucuMu" Type="bit" />
+    <Property Name="Ozet" Type="nvarchar(max)" />
+    <Property Name="PosterMi" Type="bit" />
+    <Property Name="Baslik" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="BasvuruDetay">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FKOturumId" Type="int" Nullable="false" />
+    <Property Name="FKKullaniciId" Type="int" />
+    <Property Name="FKBasvuruId" Type="int" Nullable="false" />
+    <Property Name="OnayZaman" Type="datetime" />
+    <Property Name="Onay" Type="bit" />
+  </EntityType>
+  <EntityType Name="BasvuruEvrak">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FKBasvuruId" Type="int" Nullable="false" />
+    <Property Name="DosyaTuru" Type="nvarchar" MaxLength="200" />
+    <Property Name="Dosya" Type="varchar(max)" Nullable="false" />
+    <Property Name="Zaman" Type="datetime" Nullable="false" />
+    <Property Name="DosyaAdi" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kisi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="TcNo" Type="char" MaxLength="11" />
+    <Property Name="Kurum" Type="varchar" MaxLength="150" />
+    <Property Name="Meslek" Type="varchar" MaxLength="150" />
+    <Property Name="Egitim" Type="int" />
+    <Property Name="Telefon" Type="char" MaxLength="10" />
+    <Property Name="Universite" Type="varchar" MaxLength="150" />
+    <Property Name="AnaDal" Type="varchar" MaxLength="150" />
+    <Property Name="Adres" Type="varchar" MaxLength="150" />
+    <Property Name="Fakulte" Type="varchar" MaxLength="150" />
+    <Property Name="Bolum" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Kongre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KongreAd" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Baslangic" Type="datetime" Nullable="false" />
+    <Property Name="Bitis" Type="datetime" Nullable="false" />
+    <Property Name="AktifMi" Type="bit" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Parola" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AdminMi" Type="bit" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Oturum">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FKKongreId" Type="int" Nullable="false" />
+    <Property Name="OturumAd" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="OturumBaslangic" Type="datetime" Nullable="false" />
+    <Property Name="OturumBitis" Type="datetime" Nullable="false" />
+    <Property Name="IsChecked" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Yetki">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FKKongreId" Type="int" Nullable="false" />
+    <Property Name="FKKullaniciId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Aktif_Kongre">
+    <End Role="Kongre" Type="Self.Kongre" Multiplicity="1" />
+    <End Role="Aktif" Type="Self.Aktif" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kongre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Aktif">
+        <PropertyRef Name="FKKongreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Basvuru_Kisi">
+    <End Role="Kisi" Type="Self.Kisi" Multiplicity="1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kisi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="FKKisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Basvuru_Kongre">
+    <End Role="Kongre" Type="Self.Kongre" Multiplicity="1" />
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kongre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Basvuru">
+        <PropertyRef Name="FKKongreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BasvuruDetay_Basvuru">
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="1" />
+    <End Role="BasvuruDetay" Type="Self.BasvuruDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Basvuru">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BasvuruDetay">
+        <PropertyRef Name="FKBasvuruId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BasvuruDetay_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="BasvuruDetay" Type="Self.BasvuruDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BasvuruDetay">
+        <PropertyRef Name="FKKullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BasvuruDetay_Oturum">
+    <End Role="Oturum" Type="Self.Oturum" Multiplicity="1" />
+    <End Role="BasvuruDetay" Type="Self.BasvuruDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oturum">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BasvuruDetay">
+        <PropertyRef Name="FKOturumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BasvuruEvrak_Basvuru">
+    <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="1" />
+    <End Role="BasvuruEvrak" Type="Self.BasvuruEvrak" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Basvuru">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BasvuruEvrak">
+        <PropertyRef Name="FKBasvuruId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Oturum_Kongre">
+    <End Role="Kongre" Type="Self.Kongre" Multiplicity="1" />
+    <End Role="Oturum" Type="Self.Oturum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kongre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Oturum">
+        <PropertyRef Name="FKKongreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yetki_Hakem">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+    <End Role="Yetki" Type="Self.Yetki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Yetki">
+        <PropertyRef Name="FKKullaniciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yetki_Kongre">
+    <End Role="Kongre" Type="Self.Kongre" Multiplicity="1" />
+    <End Role="Yetki" Type="Self.Yetki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kongre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Yetki">
+        <PropertyRef Name="FKKongreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KongreDbModelStoreContainer">
+    <EntitySet Name="Aktif" EntityType="Self.Aktif" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Basvuru" EntityType="Self.Basvuru" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BasvuruDetay" EntityType="Self.BasvuruDetay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BasvuruEvrak" EntityType="Self.BasvuruEvrak" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kisi" EntityType="Self.Kisi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kongre" EntityType="Self.Kongre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Oturum" EntityType="Self.Oturum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yetki" EntityType="Self.Yetki" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Aktif_Kongre" Association="Self.FK_Aktif_Kongre">
+      <End Role="Kongre" EntitySet="Kongre" />
+      <End Role="Aktif" EntitySet="Aktif" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Basvuru_Kisi" Association="Self.FK_Basvuru_Kisi">
+      <End Role="Kisi" EntitySet="Kisi" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Basvuru_Kongre" Association="Self.FK_Basvuru_Kongre">
+      <End Role="Kongre" EntitySet="Kongre" />
+      <End Role="Basvuru" EntitySet="Basvuru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BasvuruDetay_Basvuru" Association="Self.FK_BasvuruDetay_Basvuru">
+      <End Role="Basvuru" EntitySet="Basvuru" />
+      <End Role="BasvuruDetay" EntitySet="BasvuruDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BasvuruDetay_Kullanici" Association="Self.FK_BasvuruDetay_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="BasvuruDetay" EntitySet="BasvuruDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BasvuruDetay_Oturum" Association="Self.FK_BasvuruDetay_Oturum">
+      <End Role="Oturum" EntitySet="Oturum" />
+      <End Role="BasvuruDetay" EntitySet="BasvuruDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BasvuruEvrak_Basvuru" Association="Self.FK_BasvuruEvrak_Basvuru">
+      <End Role="Basvuru" EntitySet="Basvuru" />
+      <End Role="BasvuruEvrak" EntitySet="BasvuruEvrak" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Oturum_Kongre" Association="Self.FK_Oturum_Kongre">
+      <End Role="Kongre" EntitySet="Kongre" />
+      <End Role="Oturum" EntitySet="Oturum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yetki_Hakem" Association="Self.FK_Yetki_Hakem">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Yetki" EntitySet="Yetki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yetki_Kongre" Association="Self.FK_Yetki_Kongre">
+      <End Role="Kongre" EntitySet="Kongre" />
+      <End Role="Yetki" EntitySet="Yetki" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

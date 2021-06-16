@@ -1,0 +1,40 @@
+﻿@model KongreForm.Models.Yetki
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h3>Bu yetkilendirmeyi silmek istediginizden emin misiniz?</h3>
+<div>
+ 
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Kongre Adı:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kongre.KongreAd)
+        </dd>
+
+        <dt>
+           Kullanıcı Email:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kullanici.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> 
+        </div>
+    }
+</div>

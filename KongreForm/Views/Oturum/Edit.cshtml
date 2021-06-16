@@ -1,0 +1,75 @@
+﻿@model KongreForm.Models.Oturum
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Oturumu Duzenle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FKKongreId, "Kongre Seçin", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-sm-2">
+                @Html.DropDownList("FKKongreId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FKKongreId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OturumAd,"Oturum Seçin", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-sm-2">
+                @Html.EditorFor(model => model.OturumAd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OturumAd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OturumBaslangic, "Oturum Baslangıç", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-sm-2">
+                <div class="input-group date" id="datetimepicker">
+                    @Html.TextBoxFor(model => model.OturumBaslangic, "{0:yyyy-MM-ddTHH:mm:ss}", new
+               {
+                   @class = "form-control",
+                   required = "required",
+                   @type = "datetime-local",
+                   @value = DateTime.Now.ToString()
+               })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.OturumBaslangic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OturumBitis, "Oturum Bitis", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-sm-2">
+                <div class="input-group date" id="datetimepicker">
+                    @Html.TextBoxFor(model => model.OturumBitis, "{0:yyyy-MM-ddTHH:mm:ss}", new
+               {
+                   @class = "form-control",
+                   required = "required",
+                   @type = "datetime-local",
+                   @value = DateTime.Now.ToString()
+               })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.OturumBitis, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

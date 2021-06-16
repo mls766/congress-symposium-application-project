@@ -1,0 +1,86 @@
+﻿@model KongreForm.Models.BasvuruViewModel
+
+
+@if (Model.OturumList != null && Model.OturumList.Any())
+{
+    <span class="label-input100">Katılmak İstediğiniz Oturumları Seçin *</span>
+    <table id="checkbox" style="margin-top: 6px;">
+
+        @for (int i = 0; i < Model.OturumList.Count; i++)
+        {
+            <tr>
+                <td id="skills">
+                    @Html.CheckBoxFor(m => m.OturumList[i].IsChecked, new { @class = "checkbox" })
+
+
+                    <label style="font-family: Poppins-Medium">@Model.OturumList[i].OturumAd</label>
+                    @Html.HiddenFor(model => model.OturumList[i].Id)
+                    @Html.HiddenFor(model => model.OturumList[i].OturumAd)
+
+                    @Html.HiddenFor(model => model.OturumList[i].OturumBaslangic)
+                    @Html.HiddenFor(model => model.OturumList[i].OturumBitis)
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.ValidationMessageFor(m => m.OturumList, "", new { @class = "text-danger" })
+    
+        if (ViewBag.OturumError != null)
+        {
+            <span class="text-danger">@ViewBag.OturumError</span>
+        }
+    
+    <span id="oturumerror" class="text-danger" style='display:none'>En az bir oturum seçiniz</span>
+
+
+
+}
+<script>
+
+
+    $(document).ready(function () {
+        $('.checkbox').change(function (event) {
+            var list = [];
+            $('#checkbox input:checked').each(function () {
+                list.push(this.name);
+            });
+
+            $.ajax({
+            url: '@Url.Action("Index","Home")',
+            type: 'POST',
+            data: { model: list},
+            success: function (result) {
+
+            },
+            error: function (result) {
+
+            }
+        });
+        });
+    });
+
+
+    
+    $('form').submit(function () {
+        var declarationsError = $("#oturumerror");
+
+
+            var checked_checkboxes = $("#checkbox input[type=checkbox]:checked");
+            if (checked_checkboxes.length == 0) {
+                declarationsError.show();
+                return false;
+            }
+            else {
+                declarationsError.hide();
+                return true;
+            }
+        });
+
+
+
+
+</script>
+
+

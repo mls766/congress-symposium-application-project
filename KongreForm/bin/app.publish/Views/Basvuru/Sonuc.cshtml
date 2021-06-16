@@ -1,0 +1,42 @@
+﻿@model KongreForm.Models.BasvuruViewModel
+
+@{
+    ViewBag.Title = "Sonuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form class="contact100-form validate-form" method="get">
+    <span class="contact100-form-title">
+        Başvuru Sonucunuz
+    </span>
+    <div style="text-align: center;">
+        @for (int i = 0; i < Model.DetayList.Count; i++)
+        {
+            if (Model.DetayList[i].Onay == true)
+            {
+        <span class="label-input100" style="display: block">
+            @Model.DetayList[i].OturumAd Oturumuna Başvurunuz  @Model.DetayList[i].KullaniciAd @Model.DetayList[i].KullaniciSoyad tarafından Kabul Edilmiştir.
+        </span>
+
+            }
+            else if (Model.DetayList[i].Onay == false)
+            {
+    <span class="label-input100" style="display: block">
+        @Model.DetayList[i].OturumAd Oturumuna Başvurunuz @Model.DetayList[i].KullaniciAd @Model.DetayList[i].KullaniciSoyad tarafından Reddedilmiştir.
+    </span>
+            }
+            else
+            {
+                <span class="label-input100">
+                    Başvurunuz Henüz Değerlendirilmedi.Lütfen daha sonra tekrar deneyiniz.
+                </span>
+            }
+        }
+
+        <span class="focus-input100"></span>
+    </div>
+
+
+
+</form>
+

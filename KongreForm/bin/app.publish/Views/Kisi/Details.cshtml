@@ -1,0 +1,57 @@
+﻿@model KongreForm.Models.Kisi
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2>Kisi Detay</h2>
+
+
+<div id="profile" class="tab-pane active">
+    <section class="panel">
+
+        <div class="panel-body bio-graph-info">
+            <div class="row">
+                <div class="bio-row">
+                    <p><span>Ad </span>: @Html.DisplayFor(model => model.Ad)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Soyad </span>:@Html.DisplayFor(model => model.Soyad)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Email </span>: @Html.DisplayFor(model => model.Email)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Telefon </span>: @Html.DisplayFor(model => model.Telefon)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Tc Kimlik Numarası </span>: @Html.DisplayFor(model => model.TcNo)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Calistigi Kurum ve Görevi </span>:@Html.DisplayFor(model => model.Kurum)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Meslek </span>:@Html.DisplayFor(model => model.Meslek)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Egitim Durumu </span>: @Html.DisplayFor(model => model.Egitim)</p>
+                </div>
+                <td>
+                    @Html.ActionLink("Basvuru Gör", "Basvurular", new { id = Model.Id })
+                </td>
+
+
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row">
+        </div>
+    </section>
+</div>
+
+
+
+

@@ -1,0 +1,105 @@
+﻿@model KongreForm.Models.BasvuruAndEvrakModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Basvuru Detayları Guncelle</h2>
+
+@using (Html.BeginForm("Edit", "Basvuru", FormMethod.Post, new { enctype = "multipart/Form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ad, "Basvuran Kisi Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model =>model.Ad, new {htmlAttributes= new { @class = "form-control" , disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Soyad, "Basvuran Kisi Soyadı", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Soyad, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.Soyad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.KongreAd, "Basvurulan Kongre", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.KongreAd, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.KongreAd, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.PosterMi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.PosterMi)
+                    @Html.ValidationMessageFor(model => model.PosterMi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <span class="control-label col-lg-2">Poster mi?</span>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.PosterMi, new List<SelectListItem> {
+     new SelectListItem{ Value = true.ToString(), Text = "Evet" },
+     new SelectListItem{ Value = false.ToString(), Text = "Hayır" },
+   }, "Lütfen seçim yapınız", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PosterMi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Baslik, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Baslik, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Baslik, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div div class="form-group">
+        @Html.LabelFor(model => model.Dosya, htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <br />
+        <div class="col-md-10">
+            <span style="text-decoration: underline; ">Yüklü Dosya</span>: @Html.DisplayFor(model => model.DosyaAdi)
+            <a href="~/Home/DownloadFile?filePath=@Model.Id">
+                <img src="~/Images/download.png" style="width: 15px; height: 15px" title="Download" />
+            </a>
+            @Html.TextBox("Dosya", "", new { type = "file", name = "Dosya" }) <br />
+
+
+
+            @Html.ValidationMessageFor(model => model.Dosya, "", new { @class = "text-danger" })
+            @{
+                if (ViewBag.Message != null)
+                {
+                    <span class="text-danger"> @ViewBag.Message</span>
+                }
+            }
+        </div>
+
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guncelle" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<KongreForm.Models.Aktif>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Kongredeki Aktif Alanlar</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Aktif Alan 
+        </th>
+        <th>
+            Kongre Adı
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    
+<tr>
+
+    @switch (@item.AktifAlanId)
+    {
+        case 1:
+            <td>Ad</td>
+            break;
+        case 2:
+            <td>Soyad</td>
+            break;
+        case 3:
+            <td>Email</td>
+            break;
+        case 4:
+            <td>Tc Kimlik No</td>
+            break;
+        case 5:
+            <td>Calıstıgı Kurum</td>
+            break;
+        case 6:
+            <td>Meslek</td>
+            break;
+        case 7:
+            <td>Egitim</td>
+            break;
+        case 8:
+            <td>Telefon</td>
+            break;
+        case 9:
+            <td>Universite</td>
+            break;
+        case 10:
+            <td>Ana Dal</td>
+            break;
+        case 11:
+            <td>Adres</td>
+            break;
+        case 12:
+            <td>Fakulte</td>
+            break;
+        case 13:
+            <td>Bolum</td>
+            break;
+        case 14:
+            <td>Sunum Tipi</td>
+            break;
+        case 15:
+            <td>Katılım Türü</td>
+            break;
+        case 16:
+            <td>Sunum Baslik</td>
+            break;
+        case 17:
+            <td>Bildiri Baslik</td>
+            break;
+        case 18:
+            <td>Poster Baslik</td>
+            break;
+        case 19:
+            <td>Ozet</td>
+            break;
+        case 20:
+            <td>Poster Mi</td>
+            break;
+        case 21:
+            <td>Dosya</td>
+            break;
+        default:
+            <td></td>
+            break;
+    }
+
+
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Kongre.KongreAd)
+    </td>
+    <td>
+        @Html.ActionLink("Düzenle", "Edit", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

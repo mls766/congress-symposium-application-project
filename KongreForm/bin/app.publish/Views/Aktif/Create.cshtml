@@ -1,0 +1,83 @@
+﻿@model KongreForm.Models.AktifViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Aktif Alan Ekle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.FKKongreId, "Kongre Seçin", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("FKKongreId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FKKongreId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    </div>
+
+<div class="form-group" >
+    @Html.LabelFor(model => model.AktifAlanId, "Aktif Olacak Alanları Secin", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div  id="aktifcheckbox" class="col-md-10" style="margin-top:10px">
+        @for (int i = 0; i < Model.AktifItems.Count; i++)
+        {
+        <table>
+            <tr>
+                <td>
+                    @Html.CheckBoxFor(m => Model.AktifItems[i].IsChecked, new { @class = "checkbox" })
+                </td>
+                <td>
+                    @Model.AktifItems[i].Icerik
+                </td>
+            </tr>
+            @Html.HiddenFor(m => Model.AktifItems[i].Id)
+            @Html.HiddenFor(m => Model.AktifItems[i].Icerik)
+
+        </table>
+        }
+    </div>
+    </div>
+
+ 
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Ekle" class="btn btn-default"  />
+        </div>
+    </div>
+
+    
+}
+
+<script>
+
+
+
+        $(document).ready(function () {
+        $('.aktifcheckbox').change(function (event) {
+            var list = [];
+            $('#checkbox input:checked').each(function () {
+                list.push(this.name);
+            });
+
+            $.ajax({
+            url: '@Url.Action("Create","Aktif")',
+            type: 'POST',
+            data: { model: list},
+            success: function (result) {
+                alert("success");
+            },
+            error: function (result) {
+            }
+        });
+        });
+    });
+
+</script>

@@ -1,0 +1,29 @@
+﻿@model KongreForm.Models.BasvuruViewModel
+
+@foreach (var item in ViewBag.aktiflist)
+{
+    if (item == "Ad")
+    {
+        <div class="wrap-input100" @*id="Ad" style='display:none'*@>
+            <span class="label-input100">Ad*</span>
+            @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "input100" } })
+            @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+            <span class="focus-input100"></span>
+        </div>
+    }
+
+    else if (item == "Soyad")
+    {
+        <div class="wrap-input100" id="Soyad" @*style='display:none'*@>
+            <span class="label-input100">Soyad*</span>
+            @Html.EditorFor(model => model.Soyad, new { htmlAttributes = new { @class = "input100" } })
+            @Html.ValidationMessageFor(model => model.Soyad, "", new { @class = "text-danger" })
+            <span class="focus-input100"></span>
+        </div>
+    }
+}
+
+@*@if (Convert.ToBoolean(Session["Soyad"]))
+    {*@
+
+@*}*@

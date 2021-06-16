@@ -1,0 +1,158 @@
+﻿@model KongreForm.Models.BasvuruViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Basvuru Detay</h2>
+
+
+<div id="profile" class="tab-pane active">
+    <section class="panel">
+
+        <div class="panel-body bio-graph-info">
+            <div class="row">
+                <div class="bio-row">
+                    <p>
+                        <span>Basvuru Kodu </span>:@Html.DisplayFor(model => model.BasvuruKodu)
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Basvurulan Kongre </span>: @Html.DisplayFor(model => model.KongreAd)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Basvuru Zaman</span>:  @Html.DisplayFor(model => model.BasvuruZaman)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Ad </span>: @Html.DisplayFor(model => model.Ad)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Soyad </span>:@Html.DisplayFor(model => model.Soyad)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Email </span>: @Html.DisplayFor(model => model.Email)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Telefon </span>: @Html.DisplayFor(model => model.Telefon)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Üniversite </span>: @Html.DisplayFor(model => model.Universite)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Ana Dal </span>: @Html.DisplayFor(model => model.AnaDal)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Adres </span>: @Html.DisplayFor(model => model.Adres)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Fakülte </span>: @Html.DisplayFor(model => model.Fakulte)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Bölüm </span>: @Html.DisplayFor(model => model.Bolum)</p>
+                </div>
+                <div class="bio-row">
+                    <p><span> Başlık</span>: @Html.DisplayFor(model => model.Baslik)</p>
+                </div>
+                
+         
+
+                <div class="bio-row">
+                    <p>
+                        <span>Dosya URL </span>: @Html.DisplayFor(model => model.DosyaAdi)
+                        <a href="~/Home/DownloadFile?filePath=@Model.Id">
+                            <img src="~/Images/download.png" style="width: 15px; height: 15px" title="Download" />
+                        </a>
+                    </p>
+                    @{
+                        if (ViewBag.Error != null)
+                        {
+                            <p class="text-danger">@ViewBag.Error</p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        function DownloadFile(fileId) {
+            $("#hfFileId").val(fileId);
+            $("#btnDownload")[0].click();
+        };
+    </script>
+
+
+    <h3>Basvurulan Oturumlar</h3>
+
+
+
+    @using(Html.BeginForm("Onayla","Basvuru"))
+    { 
+        <table>
+            @for (int i = 0; i < Model.DetayList.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model.DetayList[i].OturumAd
+                        @Html.HiddenFor(model => model.DetayList[i].Id)
+                        @Html.HiddenFor(model=>model.DetayList[i].Id)
+                        @Html.HiddenFor(model => model.Id)
+                    </td>
+                    <td>
+                        @if (Model.DetayList[i].Onay == true)
+                        {
+                            <button type = "submit" class="btn btn-success"    name="submitButton" value="@i,0"><i class="fa fa-check"></i>Onaylandı</button>
+                            <button type = "submit" class="btn btn-notdanger"  style="width:100px" name="submitButton" value="@i,r"><i class="fa fa-close"></i>Reddet</button>
+
+                        }
+                        else if (Model.DetayList[i].Onay == false)
+                        {
+                            <button type = "submit" class="btn btn-notsuccess"  style="width:100px" name="submitButton" value="@i,o"><i class="fa fa-check"></i>Onayla</button>
+                            <button type = "submit" class="btn btn-danger" name="submitButton" value="@i,r"><i class="fa fa-close"></i>Reddedildi</button>
+
+                        }
+                        else
+                        {
+                            <button type = "submit" class="btn btn-notsuccess" style="width:100px" name="submitButton" value="@i,o"><i class="fa fa-check"></i>Onayla</button>
+                            <button type = "submit" class="btn btn-notdanger" style="width: 100px" name="submitButton" value="@i,r"><i class="fa fa-close"></i>Reddet</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    
+
+    <script>
+        function yourJavascriptBeginMethod(value) {
+
+            var buttonValue = getParameterByName(value[0].data, "submitButton");
+
+            switch (buttonValue) {
+                case 'Onayla':
+                    break;
+                case 'Reddet':
+                    break;
+                default:
+            }
+
+        }
+        function getParameterByName(data, name) {
+
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+
+            name = '?' + name; 
+
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(data);
+
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+
+    <section>
+        <div class="row">
+        </div>
+    </section>
+</div>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b50623876b8f4ad2a2f3cc3bb7611a2e" Name="Diagram1">
+        <EntityTypeShape EntityType="KongreDbModel.Basvuru" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KongreDbModel.BasvuruDetay" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KongreDbModel.BasvuruEvrak" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KongreDbModel.Kisi" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KongreDbModel.Kongre" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="KongreDbModel.Kullanici" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KongreDbModel.Oturum" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KongreDbModel.Yetki" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="KongreDbModel.FK_Basvuru_Kisi" ManuallyRouted="false" />
+        <AssociationConnector Association="KongreDbModel.FK_Basvuru_Kongre" ManuallyRouted="false" />
+        <AssociationConnector Association="KongreDbModel.FK_BasvuruDetay_Basvuru" ManuallyRouted="false" />
+        <AssociationConnector Association="KongreDbModel.FK_BasvuruEvrak_Basvuru" ManuallyRouted="false" />
+        <AssociationConnector Association="KongreDbModel.FK_BasvuruDetay_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="KongreDbModel.FK_BasvuruDetay_Oturum" ManuallyRouted="false" />
+        <AssociationConnector Association="KongreDbModel.FK_Oturum_Kongre" ManuallyRouted="false" />
+        <AssociationConnector Association="KongreDbModel.FK_Yetki_Kongre" ManuallyRouted="false" />
+        <AssociationConnector Association="KongreDbModel.FK_Yetki_Hakem" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KongreDbModel.sysdiagram" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KongreDbModel.Aktif" Width="1.5" PointX="3" PointY="2.5" />
+        <AssociationConnector Association="KongreDbModel.FK_Aktif_Kongre" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

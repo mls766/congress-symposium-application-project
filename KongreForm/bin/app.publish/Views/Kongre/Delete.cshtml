@@ -1,0 +1,79 @@
+﻿@model KongreForm.Models.Kongre
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h3>Kongreyi silmek istediginize emin misiniz?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Kongre Adı
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KongreAd)
+        </dd>
+
+        <dt>
+            Baslangıc Tarihi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baslangic)
+
+        </dd>
+
+        <dt>
+            Bitis Tarihi
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bitis)
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        if (ViewBag.KongreError != null)
+        {
+            <script type="text/javascript">
+            
+                alert("@ViewBag.KongreError")
+            
+            </script>
+                      
+            
+
+        }
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" />
+        </div>
+    }
+</div>
+@*<script type="text/javascript">
+
+    $(function() {
+    // Assign to a javascript variable
+    var error = @Html.Raw(Json.Encode(ViewBag.KongreError))
+    if (!error) {
+        swal(
+            error.ErrorTitle,
+            error.ErrorMessage,
+            'error'
+        );
+    }
+}
+</script>*@
+
+

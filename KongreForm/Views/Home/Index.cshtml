@@ -1,0 +1,259 @@
+﻿@model KongreForm.Models.BasvuruViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/Form-data", id = "form" }))
+{
+
+
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <span class="contact100-form-title">
+    </span>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="wrap-input100 input100-select">
+        <span class="label-input100">Katılmak İstediğiniz Eğitim *</span>
+        <div>
+            @Html.DropDownListFor(m => m.FKKongreId, ViewBag.dgr as SelectList, "Katılmak istediğiniz eğitimi seçin", new
+       {
+           id = "KongreList",
+           @class = "input100"
+
+       })
+
+            @Html.ValidationMessageFor(m => m.FKKongreId, "", new { @class = "text-danger" })
+        </div>
+        <span class="focus-input100"></span>
+    </div>
+
+
+    <div id="partialPlaceHolder" class="wrap-input100">
+    </div>
+
+    <div class="wrap-input100 input100-select" id="SunucuMu" style='display:none'>
+        <span class="label-input100">Katılım türü*</span>
+        <div>
+            @Html.DropDownListFor(model => model.SunucuMu, new List<SelectListItem> {
+     new SelectListItem{ Value = true.ToString(), Text = "Sunucu" },
+     new SelectListItem{ Value = false.ToString(), Text = "İzleyici" },
+   }, "Lütfen seçim yapınız", new { id = "SunucuMu", @class = "selection-2" })
+            @Html.ValidationMessageFor(model => model.SunucuMu, "", new { @class = "text-danger" })
+        </div>
+        <span class="focus-input100"></span>
+    </div>
+
+
+    <div class="wrap-input100" @*id="Ad" style='display:none'*@>
+        <span class="label-input100">Ad*</span>
+        @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="Soyad" @*style='display:none'*@>
+        <span class="label-input100">Soyad*</span>
+        @Html.EditorFor(model => model.Soyad, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Soyad, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="Universite" @*style='display:none'*@>
+        <span class="label-input100">Öğrenim Gördüğü Üniversite*</span>
+        @Html.EditorFor(model => model.Universite, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Universite, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="Fakulte" @*style='display:none'*@>
+        <span class="label-input100">Fakülte*</span>
+        @Html.EditorFor(model => model.Fakulte, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Fakulte, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="Bolum" @*style='display:none'*@>
+        <span class="label-input100">Bölüm*</span>
+        @Html.EditorFor(model => model.Bolum, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Bolum, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="AnaDal" @*style='display:none'*@>
+        <span class="label-input100">Anabilim Dalı</span>
+        @Html.EditorFor(model => model.AnaDal, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.AnaDal, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="Email" @*style='display:none'*@>
+        <span class="label-input100">Email*</span>
+        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100" id="Telefon" @*style='display:none'*@>
+        <span class="label-input100">Telefon Numarası*</span>
+        @Html.EditorFor(model => model.Telefon, new { htmlAttributes = new { @class = "input100", placeholder = "Telefon 5********* formatında olmalıdır." } })
+        @Html.ValidationMessageFor(model => model.Telefon, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="Adres" @*style='display:none'*@>
+        <span class="label-input100">Adres*</span>
+        @Html.EditorFor(model => model.Adres, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Adres, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="Baslik" @*style='display:none'*@>
+        <span class="label-input100">Poster/Bildiri Başlığı*</span>
+        @Html.EditorFor(model => model.Baslik, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Baslik, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 input100-select" id="PosterMi">
+        <span class="label-input100">Katılım türünü seçiniz*</span>
+        <div>
+            @Html.DropDownListFor(model => model.PosterMi, new List<SelectListItem> {
+     new SelectListItem{ Value = true.ToString(), Text = "Poster" },
+     new SelectListItem{ Value = false.ToString(), Text = "Bildiri" },
+   }, "Lütfen seçim yapınız", new { id = "PosterMi", @class = "input100" })
+            @Html.ValidationMessageFor(model => model.PosterMi, "", new { @class = "text-danger" })
+        </div>
+        <span class="focus-input100"></span>
+    </div>
+
+
+    <div class="wrap-input100" id="Ozet" style='display:none'>
+        <span class="label-input100">Poster/Bildiri Özeti*</span>
+        @Html.EditorFor(model => model.Ozet, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Ozet, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+
+
+    <div class="wrap-input100 " id="TcNo" style='display:none'>
+        <span class="label-input100">TC Kimlik Numarası*</span>
+        @Html.EditorFor(model => model.TcNo, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.TcNo, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 " id="Kurum" style='display:none'>
+        <span class="label-input100">Çalıştığınız Kurum ve Göreviniz</span>
+        @Html.EditorFor(model => model.Kurum, new { htmlAttributes = new { @class = "input100" } })
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="Meslek" style='display:none'>
+        <span class="label-input100">Şu anda yaptığınız mesleğiniz *</span>
+        @Html.EditorFor(model => model.Meslek, new { htmlAttributes = new { @class = "input100" } })
+        @Html.ValidationMessageFor(model => model.Meslek, "", new { @class = "text-danger" })
+        <span class="focus-input100"></span>
+    </div>
+
+
+    <div class="wrap-input100 input100-select" id="Egitim"
+         style='display:none'>
+        <span class="label-input100">Eğitim Durumu</span>
+        <div>
+            @Html.DropDownListFor(model => model.Egitim, new List<SelectListItem> {
+         new SelectListItem{ Value = "1", Text = "İlköğretim" },
+         new SelectListItem{ Value = "2", Text = "Orta Öğretim" },
+         new SelectListItem{ Value = "3", Text = "Lise" },
+         new SelectListItem{ Value = "4", Text = "Meslek Yüksek Okulu" },
+         new SelectListItem{ Value = "5", Text = "Üniversite" },
+         new SelectListItem{ Value = "6", Text = "Yüksek Lisans" },
+         new SelectListItem{ Value = "7", Text = "Doktora" },
+       }, "Eğitim durumunu seçin", new {id="egitimList", @class = "input100" })
+            @Html.ValidationMessageFor(model => model.Egitim, "", new { @class = "text-danger" })
+
+
+        </div>
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100 input100-select" id="SunumTipi" style='display:none'>
+        <span class="label-input100">Sunum Tipi *</span>
+        <div>
+            @Html.DropDownListFor(model => model.SunumTipi, new List<SelectListItem>{
+                        new SelectListItem{ Value = "1", Text = "Sözlü" },
+                        new SelectListItem{ Value = "2", Text = "Online" },
+                    }, "Sunum tipi seçin", new { id = "SunumTipi", @class = "input100", name = "tip" })
+            @Html.ValidationMessageFor(model => model.SunumTipi, "", new { @class = "text-danger" })
+        </div>
+        <span class="focus-input100"></span>
+    </div>
+
+    <div class="wrap-input100" id="Dosya">
+        <span class="label-input100">Poster/Bildiri Özetini Ekleyin*</span>
+        @Html.TextBox("Dosya", "", new { type = "file", name = "dosya" })
+        <br />
+        @Html.ValidationMessageFor(model => model.Dosya, "", new { @class = "text-danger" })
+        @{
+            if (ViewBag.Message != null)
+            { <p class="text-danger"> @ViewBag.Message</p> }
+        }
+    </div>
+
+    <div class="container-contact100-form-btn">
+        <div class="wrap-contact100-form-btn">
+            <div class="contact100-form-bgbtn"></div>
+            <button type="submit" id="submitform" onclick="submitform()" class="contact100-form-btn">
+                <span>
+                    Gönder
+                    @*<i class="fa fa-long-arrow-right m-l-7" type="submit" aria-hidden="true"></i>*@
+                </span>
+            </button>
+
+        </div>
+    </div>
+
+    @section Scripts{
+        <script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#partialPlaceHolder").hide();
+
+        $("#KongreList").on("change", function () {
+
+            if (this.value == '') {
+                $("#partialPlaceHolder").hide();
+            }
+
+            else {
+
+            var url = '@Url.Action("GetOturum", "Home")' + "?KongreId=" + $(this).val();
+
+            $("#partialPlaceHolder").load(url, function () {
+                console.log("It worked");
+                $('#partialPlaceHolder').fadeIn('fast');
+            })
+
+
+            }
+
+
+        });
+    });
+
+
+
+
+        </script>
+    }
+
+
+</div>
+
+
+
+}

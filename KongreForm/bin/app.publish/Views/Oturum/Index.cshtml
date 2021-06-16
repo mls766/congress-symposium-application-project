@@ -1,0 +1,48 @@
+﻿@model IEnumerable<KongreForm.Models.Oturum>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Oturumları Listele</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Kongre Adı
+        </th>
+        <th>
+            Oturum Adı
+        </th>
+        <th>
+            Baslangıc Zamanı
+        </th>
+        <th>
+            Bitis Zamanı      
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kongre.KongreAd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OturumAd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OturumBaslangic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OturumBitis)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

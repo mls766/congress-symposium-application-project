@@ -1,0 +1,66 @@
+﻿@model KongreForm.Models.Oturum
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h3>Bu oturumu silmek istediginizden emin misiniz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kongre.KongreAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kongre.KongreAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OturumAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OturumAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OturumBaslangic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OturumBaslangic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OturumBitis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OturumBitis)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" />
+        </div>
+    }
+</div>
+
+
+@if (ViewBag.OturumError != null)
+{
+
+    <script type="text/javascript">
+       alert('@ViewBag.OturumError')
+    </script>
+
+}

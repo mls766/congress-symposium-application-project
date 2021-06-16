@@ -1,0 +1,196 @@
+﻿@model KongreForm.Models.Oturum
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yeni Oturum Olustur</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FKKongreId, "Kongre Seçin", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-sm-2">
+                @Html.DropDownList("FKKongreId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FKKongreId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OturumAd,"Oturum Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-sm-2">
+                @Html.EditorFor(model => model.OturumAd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OturumAd, "", new { @class = "text-danger" })
+            
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OturumBaslangic,"Oturum Baslangıc", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-sm-2">
+                <div class="input-group date" id="datetimepicker">
+                    @Html.TextBoxFor(model => model.OturumBaslangic, "{0:yyyy-MM-ddTHH:mm:ss}", new
+               {
+                   @class = "form-control",
+                   required = "required",
+                   @type = "datetime-local",
+                   @value = DateTime.Now.ToString()
+               })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.OturumBaslangic, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OturumBitis,"Oturum Bitis", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-sm-2">
+                <div class="input-group date" id="datetimepicker">
+                    @Html.TextBoxFor(model => model.OturumBitis, "{0:yyyy-MM-ddTHH:mm:ss}", new
+               {
+                   @class = "form-control",
+                   required = "required",
+                   @type = "datetime-local",
+                   @value = DateTime.Now.ToString()
+               })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.OturumBitis, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Olustur" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="form-group">
+            <dd>
+                @if (TempData["mesaj"] != null)
+                {
+                    <div class="alert alert-success fade in">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="icon-remove"></i>
+                        </button>
+                        <strong>BASARILI!</strong> Oturum başarıyla oluşturuldu.
+                    </div>
+                }
+
+            </dd>
+        </div>
+    </section>
+    
+
+}
+
+
+
+@*@using (Html.BeginForm("Create", "Oturum", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            @if (ViewBag.Message != null)
+            {
+                <div style="border:solid 1px green">
+                    @ViewBag.Message
+                </div>
+            }
+
+            <div><a href="#" id="addNew">Add New</a></div>
+            <table id="dataTable" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>Kongre Seçin</th>
+                    <th>Oturum Adı No</th>
+                    <th>Oturum Baslangıc</th>
+                    <th>Oturum Bitis</th>
+                    <th></th>
+                </tr>
+                @if (Model != null && Model.Count > 0)
+                {
+                    int j = 0;
+                    foreach (var i in Model)
+                    {
+                        <tr style="border:1px solid black">
+
+                            <td>@Html.DropDownList(a => a[j], "FKKongreId", null, htmlAttributes: new { @class = "form-control" })</td>
+                            <td>@Html.TextBoxFor(a => a[j].OturumAd)</td>
+                            <td> @Html.TextBoxFor(a => a[j].OturumBaslangic, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "form-control", required = "required", @type = "datetime-local", @value = DateTime.Now.ToString() })</td>
+                            <td> @Html.TextBoxFor(a => a[j].OturumBitis, "{0:yyyy-MM-ddTHH:mm:ss}", new { @class = "form-control", required = "required", @type = "datetime-local", @value = DateTime.Now.ToString() })</td>
+                            <td>
+                                @if (j > 0)
+                                {
+                                    <a href="#" class="remove">Remove</a>
+                                }
+                            </td>
+                        </tr>
+                        j++;
+                    }
+                }
+            </table>
+            <input type="submit" value="Kaydet" />
+            }
+        </div>
+    }
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        <script language="javascript">
+            $(document).ready(function () {
+
+                //1. Add new row
+                $("#addNew").click(function (e) {
+                    e.preventDefault();
+                    var $tableBody = $("#dataTable");
+                    var $trLast = $tableBody.find("tr:last");
+                    var $trNew = $trLast.clone();
+
+                    var suffix = $trNew.find(':input:first').attr('name').match(/\d+/);
+                    $trNew.find("td:last").html('<a href="#" class="remove">Remove</a>');
+                    $.each($trNew.find(':input'), function (i, val) {
+                        // Replaced Name
+                        var oldN = $(this).attr('name');
+                        var newN = oldN.replace('[' + suffix + ']', '[' + (parseInt(suffix) + 1) + ']');
+                        $(this).attr('name', newN);
+                        //Replaced value
+                        var type = $(this).attr('type');
+                        if (type.toLowerCase() == "text") {
+                            $(this).attr('value', '');
+                        }
+
+                        // If you have another Type then replace with default value
+                        $(this).removeClass("input-validation-error");
+
+                    });
+                    $trLast.after($trNew);
+
+                    // Re-assign Validation
+                    var form = $("form")
+                        .removeData("validator")
+                        .removeData("unobtrusiveValidation");
+                    $.validator.unobtrusive.parse(form);
+                });
+
+                // 2. Remove
+                $('a.remove').live("click", function (e) {
+                    e.preventDefault();
+                    $(this).parent().parent().remove();
+                });
+
+            });
+        </script>
+    }*@

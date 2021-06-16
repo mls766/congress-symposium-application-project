@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>Kullanici Giris</title>
+
+    <!-- Bootstrap /Admin/css -->
+    <link href="/Admin/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="/Admin/css/bootstrap-theme.css" rel="stylesheet">
+    <!--external /Admin/css-->
+    <!-- font icon -->
+    <link href="/Admin/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="/Admin/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="/Admin/css/style.css" rel="stylesheet">
+    <link href="/Admin/css/style-responsive.css" rel="stylesheet" />
+
+</head>
+<body>
+            <div >
+                <form class="login-form" method="post" action="/Kullanici/Giris">
+                    <div class="login-wrap">
+                        @if (Session["kullaniciid"] == null)
+                        {
+                            <p class=" alert-danger">@ViewBag.uyari</p>
+                        }
+
+                        @if (ViewBag.BosAlanUyari != null)
+                        {
+                            <p class=" alert-danger">@ViewBag.BosAlanUyari</p>
+                        }
+                        <p class="login-img"><i class="icon_lock_alt"></i></p>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon_profile"></i></span>
+                            <input type="email" class="form-control" name="Email" placeholder="Email" autofocus>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                            <input type="password" class="form-control" name="Parola" placeholder="Parola">
+                        </div>
+                        <label class="checkbox">
+                            <span class="pull-right"> <a href="/Kullanici/SifremiUnuttum/"> Parolanı mı Unuttun?</a></span>
+                        </label>
+                        <div class="container">
+                            <button class="btn btn-login btn-lg btn-block" type="submit">Giris Yap</button>
+                        </div>
+                     
+
+
+
+
+                    </div>
+                </form>
+            </div>
+</body>
+</html>
