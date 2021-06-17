@@ -5,8 +5,11 @@
 
 ### Using ASP.NET MVC5 Entity Framework 6
 
+![image](./packages/images/12.png)
 
 ![image](./packages/images/1.png)
+
+![image](./packages/images/13.png)
 
 ![image](./packages/images/2.png)
 
@@ -25,3 +28,5 @@
 ![image](./packages/images/9.png)
 
 ![image](./packages/images/10.png)
+
+![image](./packages/images/11.png)
